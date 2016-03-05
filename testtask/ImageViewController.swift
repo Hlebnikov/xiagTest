@@ -16,6 +16,9 @@ class ImageViewController: UIViewController, MFMailComposeViewControllerDelegate
     @IBOutlet weak var sendButton : UIButton?
     @IBOutlet weak var loadIndicator: UIActivityIndicatorView!
     
+    var number : Int?
+    var imageData : NSData?
+    
     @IBAction func sendEmail(sender: AnyObject) {
 
         if( MFMailComposeViewController.canSendMail() ) {
@@ -27,7 +30,7 @@ class ImageViewController: UIViewController, MFMailComposeViewControllerDelegate
             mailComposer.setToRecipients(["test@test.com"])
             mailComposer.setSubject("Test")
             mailComposer.setMessageBody(TestData.sharedInstance.names[number!], isHTML: false)
-            mailComposer.addAttachmentData(NSData(contentsOfURL: NSURL(string: TestData.sharedInstance.bigImgsURLs[number!])!)!, mimeType: "image/jpeg", fileName: "pict")
+            mailComposer.addAttachmentData(imageData!, mimeType: "image/jpeg", fileName: "pict")
             self.presentViewController(mailComposer, animated: true, completion: nil)
         }
     }
@@ -36,22 +39,20 @@ class ImageViewController: UIViewController, MFMailComposeViewControllerDelegate
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    
-    var number : Int?
-
     override func viewDidLoad() {
         super.viewDidLoad()
         loadIndicator.startAnimating()
         let qualityOfServiceClass = QOS_CLASS_BACKGROUND
         let backgroundQueue = dispatch_get_global_queue(qualityOfServiceClass, 0)
         dispatch_async(backgroundQueue, {
-            let image = UIImage(data: NSData(contentsOfURL: NSURL(string: TestData.sharedInstance.bigImgsURLs[self.number!])!)!)
+            self.imageData = NSData(contentsOfURL: NSURL(string: TestData.sharedInstance.bigImgsURLs[self.number!])!)!
+            let image = UIImage(data: self.imageData!)
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.img!.image = image
                 self.loadIndicator.stopAnimating()
             })
         })
-        // Do view setup here.
+        
     }
     
     

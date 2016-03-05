@@ -22,7 +22,7 @@
             </objects>
             <point key="canvasLocation" x="-227" y="426"/>
         </scene>
-        <!--View Controller-->
+        <!--Gallery-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="testtask" customModuleProvider="target" sceneMemberID="viewController">
@@ -95,7 +95,7 @@
                             <constraint firstItem="s39-F6-3KO" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="uim-PP-2Uc"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="EtR-Aj-pez"/>
+                    <navigationItem key="navigationItem" title="Gallery" id="EtR-Aj-pez"/>
                     <connections>
                         <outlet property="collectionView" destination="Oz2-54-1NE" id="aln-HU-whh"/>
                         <outlet property="searchBar" destination="s39-F6-3KO" id="FUK-Va-vK4"/>
@@ -114,7 +114,7 @@
             </objects>
             <point key="canvasLocation" x="448" y="426"/>
         </scene>
-        <!--Image View Controller-->
+        <!--Image-->
         <scene sceneID="0Y8-Nn-ghF">
             <objects>
                 <viewController id="gud-7S-q2u" customClass="ImageViewController" customModule="testtask" customModuleProvider="target" sceneMemberID="viewController">
@@ -157,6 +157,7 @@
                             <constraint firstItem="fnG-Bs-JEN" firstAttribute="top" secondItem="aBp-uD-0zP" secondAttribute="bottom" constant="34" id="yBf-eQ-ZRt"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Image" id="9xj-pu-ItB"/>
                     <connections>
                         <outlet property="img" destination="k2q-Xd-QZ1" id="6Pj-Dp-sLi"/>
                         <outlet property="loadIndicator" destination="QqB-fF-95f" id="xpP-Jd-BED"/>
