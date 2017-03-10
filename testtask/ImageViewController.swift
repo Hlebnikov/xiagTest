@@ -17,9 +17,9 @@ class ImageViewController: UIViewController, MFMailComposeViewControllerDelegate
     @IBOutlet weak var loadIndicator: UIActivityIndicatorView!
     
     var number : Int?
-    var imageData : NSData?
+    var imageData : Data?
     
-    @IBAction func sendEmail(sender: AnyObject) {
+    @IBAction func sendEmail(_ sender: AnyObject) {
 
         if( MFMailComposeViewController.canSendMail() ) {
             print("Can send email.")
@@ -31,23 +31,23 @@ class ImageViewController: UIViewController, MFMailComposeViewControllerDelegate
             mailComposer.setSubject("Test")
             mailComposer.setMessageBody(TestData.sharedInstance.names[number!], isHTML: false)
             mailComposer.addAttachmentData(imageData!, mimeType: "image/jpeg", fileName: "pict")
-            self.presentViewController(mailComposer, animated: true, completion: nil)
+            self.present(mailComposer, animated: true, completion: nil)
         }
     }
     
-    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loadIndicator.startAnimating()
-        let qualityOfServiceClass = QOS_CLASS_BACKGROUND
-        let backgroundQueue = dispatch_get_global_queue(qualityOfServiceClass, 0)
-        dispatch_async(backgroundQueue, {
-            self.imageData = NSData(contentsOfURL: NSURL(string: TestData.sharedInstance.bigImgsURLs[self.number!])!)!
+        let qualityOfServiceClass = DispatchQoS.QoSClass.background
+        let backgroundQueue = DispatchQueue.global(qos: qualityOfServiceClass)
+        backgroundQueue.async(execute: {
+            self.imageData = try! Data(contentsOf: URL(string: TestData.sharedInstance.bigImgsURLs[self.number!])!)
             let image = UIImage(data: self.imageData!)
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            DispatchQueue.main.async(execute: { () -> Void in
                 self.img!.image = image
                 self.loadIndicator.stopAnimating()
             })

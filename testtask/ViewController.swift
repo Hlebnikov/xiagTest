@@ -28,12 +28,12 @@ class ViewController: UIViewController, UISearchBarDelegate, UICollectionViewDat
         // Dispose of any resources that can be recreated.
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return filteredData != [] ? filteredData.count : TestData.sharedInstance.names.count ?? 0
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as? CellForPicture
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? CellForPicture
         
         if (cell != nil) {
             if filteredData == [] {
@@ -47,21 +47,21 @@ class ViewController: UIViewController, UISearchBarDelegate, UICollectionViewDat
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showSequence" {
-            let svc = segue.destinationViewController as? ImageViewController
+            let svc = segue.destination as? ImageViewController
             if let cell = sender as? CellForPicture {
                 svc!.number = cell.number
             }
         }
     }
     
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
 
         filteredData = []
         if searchBar.text != "" {
             for i in 0..<TestData.sharedInstance.names.count {
-                if let _ = TestData.sharedInstance.names[i].rangeOfString(searchBar.text!, options: .CaseInsensitiveSearch) {
+                if let _ = TestData.sharedInstance.names[i].range(of: searchBar.text!, options: .caseInsensitive) {
                     filteredData.append(i)
                 }
             }
@@ -70,12 +70,12 @@ class ViewController: UIViewController, UISearchBarDelegate, UICollectionViewDat
         collectionView.reloadData()
     }
     
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         filteredData = []
         collectionView.reloadData()
     }
     
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText == "" {
             filteredData = []
             collectionView.reloadData()

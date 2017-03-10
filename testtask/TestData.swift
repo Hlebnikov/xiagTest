@@ -17,24 +17,18 @@ class TestData {
     var bigImgsURLs = [String]()
     
     init(){
-        let url = NSURL(string: "http://www.xiag.ch/share/testtask/list.json")!
-        let data = NSData(contentsOfURL: url)
+        let url = URL(string: "http://www.xiag.ch/share/testtask/list.json")!
+        let data = try? Data(contentsOf: url)
         if data != nil {
             do {
-                let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)
+                let jsonData = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! NSArray
                 print(jsonData)
                 
-                for i in 0..<jsonData.count! {
-                    if let block = jsonData[i] as? [String : AnyObject]{
-                        if let name  = block["name"] as? String {
-                            self.names.append(name)
-                        }
-                        if let tn = block["url_tn"] as? String {
-                            self.tnURLs.append(tn)
-                        }
-                        if let big = block["url"] as? String {
-                            self.bigImgsURLs.append(big)
-                        }
+                for i in 0..<(jsonData as AnyObject).count! {
+                    if let block = jsonData[i] as? [String : String]{
+                        self.names.append(block["name"]!)
+                        self.tnURLs.append(block["url_tn"]!)
+                        self.bigImgsURLs.append(block["url_tn"]!)
                     }
                 }
             } catch {
