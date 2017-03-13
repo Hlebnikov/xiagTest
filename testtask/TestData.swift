@@ -8,35 +8,34 @@
 
 import Foundation
 
+struct XTImageInfo{
+    let name : String
+    let smallImageUrl: String
+    let bigImageUrl: String
+}
+
 class TestData {
-    
     static let sharedInstance = TestData()
     
-    var names = [String]()
-    var tnURLs = [String]()
-    var bigImgsURLs = [String]()
-    
+    var imageInfos = [XTImageInfo]()
+
     init(){
         let url = URL(string: "http://www.xiag.ch/share/testtask/list.json")!
-        let data = try? Data(contentsOf: url)
-        if data != nil {
+        if let data = try? Data(contentsOf: url){
             do {
-                let jsonData = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! NSArray
-                print(jsonData)
-                
-                for i in 0..<(jsonData as AnyObject).count! {
-                    if let block = jsonData[i] as? [String : String]{
-                        self.names.append(block["name"]!)
-                        self.tnURLs.append(block["url_tn"]!)
-                        self.bigImgsURLs.append(block["url_tn"]!)
+                let jsonData = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! NSArray
+
+                for block in jsonData{
+                    if let block = block as? [String : String]{
+                        let name = block["name"]!
+                        let smallImageUrl = block["url_tn"]!
+                        let bigImageUrl = block["url"]!
+                        imageInfos.append(XTImageInfo(name: name, smallImageUrl: smallImageUrl, bigImageUrl: bigImageUrl))
                     }
                 }
             } catch {
-                print("error serializing JSON: \(error)")
+                print("Error serializing JSON: \(error)")
             }
         }
-        print(names)
-        print(tnURLs)
-        print(bigImgsURLs)
     }
 }

@@ -13,29 +13,45 @@ class CellForPicture: UICollectionViewCell {
     @IBOutlet weak var previewPic: UIImageView!
     @IBOutlet weak var nameOfPicture: UILabel!
     @IBOutlet weak var loadIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var nameLabelBgView : UIView!
     
-    var number = 0
+    static let nibName = "CellForPicture"
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+    lazy var downloadQueue: OperationQueue = {
+        var queue = OperationQueue()
+        queue.name = "Download queue"
+        return queue
+    }()
     
-    func config(_ number : Int){
-        nameOfPicture.text = TestData.sharedInstance.names[number]
-        previewPic.image = nil
+    var info : XTImageInfo!
+    
+    func config(_ info : XTImageInfo){
+        self.info = info
         loadIndicator.startAnimating()
-        let qualityOfServiceClass = DispatchQoS.QoSClass.background
-        let backgroundQueue = DispatchQueue.global(qos: qualityOfServiceClass)
-        backgroundQueue.async(execute: {
-            let image = UIImage(data: try! Data(contentsOf: URL(string: TestData.sharedInstance.tnURLs[number])!))
-            DispatchQueue.main.async(execute: { () -> Void in
-                self.previewPic.image = image
-                self.loadIndicator.stopAnimating()
-            })
-        })
-        
-        self.number = number
+        nameOfPicture.text = info.name
+        previewPic.image = UIImage(named: "default-placeholder")
+        let urlString = info.smallImageUrl
+        getImage(fromUrl: urlString) { (image) in
+            self.previewPic.image = image
+            self.loadIndicator.stopAnimating()
+        }
     }
-
+    
+    func getImage(fromUrl url: String, complition: @escaping (UIImage)->()){
+        if let cachedImage = ImageCache.sharedInstance.getImage(withKey: url){
+            complition(cachedImage)
+        }else{
+            self.downloadQueue.addOperation {
+                if let imageData = try? Data(contentsOf: URL(string: url)!){
+                    if let image = UIImage(data: imageData){
+                        ImageCache.sharedInstance.save(image: image, forKey: url)
+                        OperationQueue.main.addOperation{
+                            complition(image)
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
 }

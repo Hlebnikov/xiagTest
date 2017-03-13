@@ -10,50 +10,71 @@ import UIKit
 import Foundation
 import MessageUI
 
-class ImageViewController: UIViewController, MFMailComposeViewControllerDelegate {
+class ImageViewController: UIViewController {
     
-    @IBOutlet weak var img : UIImageView?
-    @IBOutlet weak var sendButton : UIButton?
+    @IBOutlet weak var imageView : UIImageView!
     @IBOutlet weak var loadIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var nameLabel : UILabel!
     
-    var number : Int?
+    var imageInfo : XTImageInfo!
     var imageData : Data?
     
-    @IBAction func sendEmail(_ sender: AnyObject) {
-
-        if( MFMailComposeViewController.canSendMail() ) {
-            print("Can send email.")
-            
-            let mailComposer = MFMailComposeViewController()
-            mailComposer.mailComposeDelegate = self
-            
-            mailComposer.setToRecipients(["test@test.com"])
-            mailComposer.setSubject("Test")
-            mailComposer.setMessageBody(TestData.sharedInstance.names[number!], isHTML: false)
-            mailComposer.addAttachmentData(imageData!, mimeType: "image/jpeg", fileName: "pict")
-            self.present(mailComposer, animated: true, completion: nil)
-        }
-    }
-    
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+    @IBAction func close(){
         self.dismiss(animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loadIndicator.startAnimating()
-        let qualityOfServiceClass = DispatchQoS.QoSClass.background
-        let backgroundQueue = DispatchQueue.global(qos: qualityOfServiceClass)
-        backgroundQueue.async(execute: {
-            self.imageData = try! Data(contentsOf: URL(string: TestData.sharedInstance.bigImgsURLs[self.number!])!)
-            let image = UIImage(data: self.imageData!)
-            DispatchQueue.main.async(execute: { () -> Void in
-                self.img!.image = image
-                self.loadIndicator.stopAnimating()
-            })
-        })
+        loadImage()
+        let sendEmailButton = UIBarButtonItem(image: #imageLiteral(resourceName: "mail"), style: .done, target: self, action: #selector(sendEmail))
+        self.navigationItem.setRightBarButton(sendEmailButton, animated: false)
         
+        UIApplication.shared.statusBarStyle = .lightContent
     }
     
+    func loadImage(){
+        self.nameLabel.text = self.imageInfo.name
+        
+        let downloadQueue = DispatchQueue(label: "xiag.test.downloadBig", qos: .userInitiated)
+        downloadQueue.async(execute: {
+            if let imageData = try? Data(contentsOf: URL(string: self.imageInfo.bigImageUrl)!){
+                self.imageData = imageData
+                let image = UIImage(data: imageData)
+                DispatchQueue.main.async(execute: { () -> Void in
+                    self.imageView.image = image
+                    self.loadIndicator.stopAnimating()
+                })
+            }
+        })
+    }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        UIApplication.shared.statusBarStyle = .default
+    }
+    
+}
+
+extension ImageViewController: MFMailComposeViewControllerDelegate{
+    @IBAction func sendEmail(){
+        if(MFMailComposeViewController.canSendMail()) {
+            let mailComposer = MFMailComposeViewController()
+            mailComposer.mailComposeDelegate = self
+            mailComposer.setToRecipients(["test@test.com"])
+            mailComposer.setSubject("Test")
+            
+            if let imageData = self.imageData{
+                let imageName = imageInfo.name
+                mailComposer.setMessageBody(imageName, isHTML: false)
+                mailComposer.addAttachmentData(imageData, mimeType: "image/jpeg", fileName: imageName)
+                
+                self.present(mailComposer, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        self.dismiss(animated: true, completion: nil)
+    }
 }

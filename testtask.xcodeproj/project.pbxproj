@@ -7,10 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F66DBA21E72CCEC00CA6128 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F66DBA11E72CCEC00CA6128 /* ImageCache.swift */; };
+		1FA17E301E76EE7F0017BE68 /* ImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FA17E2F1E76EE7F0017BE68 /* ImageViewController.xib */; };
+		1FA17E331E76F4790017BE68 /* GalleryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FA17E321E76F4790017BE68 /* GalleryViewController.xib */; };
+		1FA17E351E76F5F10017BE68 /* CellForPicture.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FA17E341E76F5F10017BE68 /* CellForPicture.xib */; };
 		843D2EA51C884CA40090E763 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D2EA41C884CA40090E763 /* TestData.swift */; };
 		843D2EA71C8897D80090E763 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D2EA61C8897D80090E763 /* ImageViewController.swift */; };
 		84CF650B1C873F070027071D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF650A1C873F070027071D /* AppDelegate.swift */; };
-		84CF650D1C873F070027071D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF650C1C873F070027071D /* ViewController.swift */; };
+		84CF650D1C873F070027071D /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF650C1C873F070027071D /* GalleryViewController.swift */; };
 		84CF65101C873F070027071D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84CF650E1C873F070027071D /* Main.storyboard */; };
 		84CF65121C873F080027071D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84CF65111C873F080027071D /* Assets.xcassets */; };
 		84CF65151C873F080027071D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84CF65131C873F080027071D /* LaunchScreen.storyboard */; };
@@ -18,11 +22,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F66DBA11E72CCEC00CA6128 /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		1FA17E2F1E76EE7F0017BE68 /* ImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageViewController.xib; sourceTree = "<group>"; };
+		1FA17E321E76F4790017BE68 /* GalleryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GalleryViewController.xib; sourceTree = "<group>"; };
+		1FA17E341E76F5F10017BE68 /* CellForPicture.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CellForPicture.xib; sourceTree = "<group>"; };
 		843D2EA41C884CA40090E763 /* TestData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		843D2EA61C8897D80090E763 /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		84CF65071C873F070027071D /* testtask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testtask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84CF650A1C873F070027071D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		84CF650C1C873F070027071D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		84CF650C1C873F070027071D /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		84CF650F1C873F070027071D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		84CF65111C873F080027071D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84CF65141C873F080027071D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -41,6 +49,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1FA17E311E76F4590017BE68 /* ImageViewController */ = {
+			isa = PBXGroup;
+			children = (
+				843D2EA61C8897D80090E763 /* ImageViewController.swift */,
+				1FA17E2F1E76EE7F0017BE68 /* ImageViewController.xib */,
+			);
+			name = ImageViewController;
+			sourceTree = "<group>";
+		};
+		1FA17E3C1E76F6FD0017BE68 /* GalleryViewController */ = {
+			isa = PBXGroup;
+			children = (
+				84CF650C1C873F070027071D /* GalleryViewController.swift */,
+				1FA17E321E76F4790017BE68 /* GalleryViewController.xib */,
+				84CF651C1C8743090027071D /* CellForPicture.swift */,
+				1FA17E341E76F5F10017BE68 /* CellForPicture.xib */,
+			);
+			name = GalleryViewController;
+			sourceTree = "<group>";
+		};
 		84CF64FE1C873F070027071D = {
 			isa = PBXGroup;
 			children = (
@@ -60,11 +88,11 @@
 		84CF65091C873F070027071D /* testtask */ = {
 			isa = PBXGroup;
 			children = (
+				1FA17E3C1E76F6FD0017BE68 /* GalleryViewController */,
+				1FA17E311E76F4590017BE68 /* ImageViewController */,
+				1F66DBA11E72CCEC00CA6128 /* ImageCache.swift */,
 				84CF650A1C873F070027071D /* AppDelegate.swift */,
-				84CF650C1C873F070027071D /* ViewController.swift */,
 				843D2EA41C884CA40090E763 /* TestData.swift */,
-				84CF651C1C8743090027071D /* CellForPicture.swift */,
-				843D2EA61C8897D80090E763 /* ImageViewController.swift */,
 				84CF650E1C873F070027071D /* Main.storyboard */,
 				84CF65111C873F080027071D /* Assets.xcassets */,
 				84CF65131C873F080027071D /* LaunchScreen.storyboard */,
@@ -100,12 +128,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = Khlebnikov;
 				TargetAttributes = {
 					84CF65061C873F070027071D = {
 						CreatedOnToolsVersion = 7.2.1;
 						LastSwiftMigration = 0820;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -132,8 +161,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FA17E331E76F4790017BE68 /* GalleryViewController.xib in Resources */,
 				84CF65151C873F080027071D /* LaunchScreen.storyboard in Resources */,
 				84CF65121C873F080027071D /* Assets.xcassets in Resources */,
+				1FA17E301E76EE7F0017BE68 /* ImageViewController.xib in Resources */,
+				1FA17E351E76F5F10017BE68 /* CellForPicture.xib in Resources */,
 				84CF65101C873F070027071D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -145,8 +177,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F66DBA21E72CCEC00CA6128 /* ImageCache.swift in Sources */,
 				84CF651D1C8743090027071D /* CellForPicture.swift in Sources */,
-				84CF650D1C873F070027071D /* ViewController.swift in Sources */,
+				84CF650D1C873F070027071D /* GalleryViewController.swift in Sources */,
 				843D2EA71C8897D80090E763 /* ImageViewController.swift in Sources */,
 				84CF650B1C873F070027071D /* AppDelegate.swift in Sources */,
 				843D2EA51C884CA40090E763 /* TestData.swift in Sources */,
@@ -188,8 +221,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -214,6 +249,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-D DEBUG";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 2;
@@ -233,8 +269,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -263,11 +301,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = testtask/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Khlebnikov.testtask;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -276,11 +316,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = testtask/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Khlebnikov.testtask;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

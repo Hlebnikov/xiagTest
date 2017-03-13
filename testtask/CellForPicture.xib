@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="xeL-W2-Gxu" customClass="CellForPicture" customModule="testtask" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="224" height="213"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="224" height="213"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ACi-zT-zhl">
+                        <rect key="frame" x="1" y="1" width="222" height="211"/>
+                    </imageView>
+                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="wdz-C1-o0b">
+                        <rect key="frame" x="102" y="97" width="20" height="20"/>
+                    </activityIndicatorView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ytt-vv-D09">
+                        <rect key="frame" x="0.0" y="16" width="51.5" height="20"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uQC-7l-bjb">
+                                <rect key="frame" x="8" y="5" width="35.5" height="11"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="0.62117401541095896" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="uQC-7l-bjb" secondAttribute="trailing" constant="8" id="8OG-Pb-LAs"/>
+                            <constraint firstItem="uQC-7l-bjb" firstAttribute="top" secondItem="Ytt-vv-D09" secondAttribute="top" constant="5" id="Jve-t6-KOe"/>
+                            <constraint firstAttribute="height" constant="20" id="NFi-7k-Wda"/>
+                            <constraint firstItem="uQC-7l-bjb" firstAttribute="leading" secondItem="Ytt-vv-D09" secondAttribute="leading" constant="8" id="OqV-oH-Eg6"/>
+                            <constraint firstAttribute="bottom" secondItem="uQC-7l-bjb" secondAttribute="bottom" constant="4" id="hPf-qP-OHD"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="wdz-C1-o0b" firstAttribute="centerY" secondItem="xeL-W2-Gxu" secondAttribute="centerY" id="16h-9C-rgV"/>
+                <constraint firstItem="Ytt-vv-D09" firstAttribute="top" secondItem="xeL-W2-Gxu" secondAttribute="top" constant="16" id="74C-D2-zcJ"/>
+                <constraint firstItem="wdz-C1-o0b" firstAttribute="centerX" secondItem="xeL-W2-Gxu" secondAttribute="centerX" id="HeG-tB-f5Q"/>
+                <constraint firstItem="Ytt-vv-D09" firstAttribute="leading" secondItem="xeL-W2-Gxu" secondAttribute="leading" id="P3v-3N-uFa"/>
+                <constraint firstItem="ACi-zT-zhl" firstAttribute="top" secondItem="xeL-W2-Gxu" secondAttribute="topMargin" constant="-7" id="RYU-ro-bfK"/>
+                <constraint firstItem="ACi-zT-zhl" firstAttribute="leading" secondItem="xeL-W2-Gxu" secondAttribute="leadingMargin" constant="-7" id="Zmm-5Y-bb0"/>
+                <constraint firstAttribute="bottomMargin" secondItem="ACi-zT-zhl" secondAttribute="bottom" constant="-7" id="fIa-XS-VkZ"/>
+                <constraint firstAttribute="trailingMargin" secondItem="ACi-zT-zhl" secondAttribute="trailing" constant="-7" id="gAi-kQ-pEE"/>
+            </constraints>
+            <connections>
+                <outlet property="loadIndicator" destination="wdz-C1-o0b" id="n0Y-Or-a3G"/>
+                <outlet property="nameLabelBgView" destination="Ytt-vv-D09" id="tDK-7x-3x6"/>
+                <outlet property="nameOfPicture" destination="uQC-7l-bjb" id="xbD-5x-B3P"/>
+                <outlet property="previewPic" destination="ACi-zT-zhl" id="ugy-pY-x1i"/>
+            </connections>
+            <point key="canvasLocation" x="231" y="-186.5"/>
+        </collectionViewCell>
+    </objects>
+</document>
